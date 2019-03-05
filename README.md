@@ -3,11 +3,11 @@ I will write what i leanred about computer science.
 
 ## Algorithm
 
->**1.** [**Big-O**](https://github.com/leeyeonghan/TIL/blob/master/Algorithm/Big-O)
-
+>**1.** [**Big-O**](#./Big-O.md)
+>**2.** [**Stack&Queue&Recursive**](#./Stack & Recursive & Queue .md)
 ## OperatingSystem
 
->**1.** [**Header**](https://google.com/)
+>**1.** [**Header**](#./Big-O.md)
 
 ## DataStructure
 
