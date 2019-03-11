@@ -38,7 +38,7 @@ public class MyStack{
 
     public T pop(){
         //top == null 이라면 스택이 비어 있다고 에러
-        if (top == null) throw newEmptyStackException();
+        if (top == null) throw new EmptyStackException();
         T item = top.data;          //top에 있는 아이템을 삭제하기 위해 tmp에 빼놓은 후에
         top = top.next;             //top을 현재 top.next로 변경해 준후에
         return item;                //tmp에 빼놓은 것을 반환.
@@ -55,7 +55,7 @@ public class MyStack{
 
     public T peek(){
         //top == null 이라면 에러
-        if (top == null) throw new EmptySttackException();
+        if (top == null) throw new EmptyStackException();
         //현재 top의 값을 반환
         return top.data;
     }
@@ -222,9 +222,11 @@ hello
 .  
 .  
 무한 반복.  
+함수를 종료 되지 않는다.  
+
 그렇기 때문에 우리는 basecase를 넣고, basecase에 조건으로 사용된 변수를 변경하는 코드를 작성해야한다
 
-밑의 코드는 위에서 말했던 세가지 요소가 존재하는 코드이다.
+밑의 코드는 위에서 말했던 세가지 재귀함수의 필수 요소가 존재하는 코드이다.
 
 ```java  
 void Recursive(int cnt){
@@ -247,11 +249,9 @@ void main(){
 ```
 
 위의 코드를 cnt = 3으로 실행 시키면
-        //cnt = 2가 되고, 2<1 이므로 종료하는 조건에 맞지 않으므로 print
-hello   
-        //cnt = 1가 되고, 1<1 이므로 종료하는 조건에 맞지 않으므로 print
-hello   
-        //cnt = 0가 되고, 0<1 이므로 종료하는 조건에 맞으므로, return.
+cnt = 2가 되고, 2<1 이므로 종료하는 조건에 맞지 않으므로 print hello   
+cnt = 1가 되고, 1<1 이므로 종료하는 조건에 맞지 않으므로 print hello   
+cnt = 0가 되고, 0<1 이므로 종료하는 조건에 맞으므로, return.
 
 위의 결과 값과 같이 총 2번 찍힌 이후에 종료될 것이다.
 
