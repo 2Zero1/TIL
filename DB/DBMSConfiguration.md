@@ -1,5 +1,6 @@
 # 구성요소 
 > 1. 3단계 스키마
+> ![airplane](./image/dbconfig/schema.png)
 > 스키마란 : schema==format, 데이터베이스의 구조(데이터 객체, 관계) 와 제약 조건의 명세
 > - 외부 단계(external schema) : 각 부서가 갖고 있는 것들.
 > - 개념 단계(conceptual schema) : extrenal을 통합해서 하나로 만들어 놓은것.
