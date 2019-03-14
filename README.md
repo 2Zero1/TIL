@@ -12,7 +12,7 @@ I will write what i leanred about computer science.
 > [1.**introduction**](/DB/introduction.md)  
 > [2.**DBMS**](/DB/DBMS.md)  
 >## Network
-> [2.**DBMS Configuration**](/DB/DBMSConfiguration.md) 
+> [2.**DBMS Configuration**](/DB/DBMSConfiguration.md)   
 > [3.**Transmission Media**](/DB/TransmissionMedia.md) 
 > ## Android
 > ## Database
