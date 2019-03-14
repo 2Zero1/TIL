@@ -3,7 +3,8 @@ I will write what i leanred about computer science.
 
 >## Algorithm
 > [**1.Big-O**](/Algorithm/Big-O.md)   
-> [**2.Stack&Queue&Recursive**](/Algorithm/StackRecursiveQueue.md)  
+> [**2.Stack & Queue&Recursive**](/Algorithm/StackRecursiveQueue.md)  
+> [**3.Dynamic Array & LinkedList**](/Algorithm/DynamicArrayLinkedList.md) 
 >## OperatingSystem
 > [1.**Introduction**](/OS/introduction.md)  
 > [2.**Process**](/OS/process.md)  
