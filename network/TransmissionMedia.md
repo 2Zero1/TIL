@@ -1,7 +1,7 @@
 
 # Transmission Media
 ## 1. 설명 
-> ![transmission media](./image/transmissionmedia/transmissionmedia.png)
+> ![transmission media](./image/transmissionmedia/transmissionMedia.png)
 > ### 1.사전적 의미 
 > - 매질(媒質)은 어떤 파동 또는 물리적 작용을 한 곳에서 다른 곳으로 옮겨 주는 매개물이다. 예를 들어, 소리의 매질은 일반적으로 공기(기체)이지만, 액체 또는 고체도 포함한다.
 > ### 2.설명 : 데이터를 전기적 신호로 변경하여 전송하는데(physical layer), 전송 해줄 매체를 이야기한다. 위의 그림과 같이 **Guided media(유선)** 과 **Unguided media** 로 나뉘어 진다.
