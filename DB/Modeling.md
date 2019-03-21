@@ -136,7 +136,7 @@ Relationship Type도 attribute를 갖는다.
         - E-R 벤다이어그램에 교수 지도 학생의 선에 1은 부분 참여를 나타낸다.
     - 위의 그림에서 첫번째 교수가 빠진다면? 그 지도교수의 학생들은 DB로 부터 삭제되야한다. 또는 다른 교수로 이어주던가 해야함.
     - 밑의 벤다이어그램을 보면서 배운걸 생각해보자.
-![mapping](./image/modeling/mapping.png)
+![mapping](./image/modeling/mapping2.png)
    
     
 
@@ -144,22 +144,24 @@ Relationship Type도 attribute를 갖는다.
 현실 세계를 개념적으로 표현하는것이다. 개체 타입과 관계타입을 기본 개념으로 현실 세계를 개념적으로 표현하는 방법이다.
 
 - 1.E-R 다이어그램
-    
+    ![속성을 갖는 관계](./image/modeling/E-R1.png)
+     ![E-R요소](./image/modeling/E-R2.png)
 - 2.Key Attribute()
     - 개체 타입내의 모든 개체 인스턴스들을 유일하게 식별하게 하는 값. 동일한 키 값을 갖는 두 개의 객체 인스턴트는 존재하지 않음.
     - 벤다이어그램에서 밑줄로 표시
 
 - 예제
     - 릴레이션에는 대부분 attribute에는 없지만, 있는 경우도 있다.
-- 3.특징
+- 3.E-R 다이어그램 특징
      - 1.Relation Type도 속성을 갖는다.
-     ![속성을 갖는 관계](./image/modeling/mapping.png)
+     ![속성을 갖는 관계](./image/modeling/relationshipattribute.png)
      - 2.다대다 관계 표현
      - 3.다원 관계표현(n-ary relationship)
-     ![triple](./image/modeling/triple.png)
+     ![triple](./image/modeling/n-ary.png)
         - 위의 그림은 3진 관계이다.
         - 근무의 데이터는 3팀의 홍길동이 국민대에서 근무한다.
     - 3.다중 관계(multiple relationship)
+    ![다중](./image/modeling/multiple2.png)
         - 여러개의 관계를 갖는다.
         - 관리 : 어느 직원이 어느 부서를 관리하는지
         - 근무 : 어느 부서의 직원이 어디서 근무한다.
@@ -183,4 +185,3 @@ Relationship Type도 attribute를 갖는다.
         - 직원 -n 관리 -1 직원
         -    하급자   상급자
         - 더 간단하게 만들면
-        
