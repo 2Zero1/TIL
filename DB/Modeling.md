@@ -78,17 +78,16 @@ attribute
 ![관계](./image/modeling/E-RRelationship.png)
 - 위의 그림과 같이 학생과 과목에는 관계가 있다. 학생이 어떤 과목을 듣는지에 대한 것이다.    
 
-![관계](./image/modeling/relationtypeInstance.png)
-  
 - 예제1
+![관계](./image/modeling/relationtypeInstance.png)
 ![관계2](./image/modeling/relationship2.png)
-    - 학생 테이블, 등록 테이블이, 과목 테이블이 존재한다.
+    - 첫번째 : 학생 테이블, 두번째 : 등록 테이블이, 세번째 : 과목 테이블이 존재한다.
     - 등록은 학생이 어떤 과목을 수강중인지에 대한 테이블이다.
-    - 학생 테이블 : 학생의 데이터가 존재(학번 : key attribute) entity type으로부터 생성된 테이블
-    - 과목 테이블 : 과목 정보가 존재(과목번호 : key attribute) entity type으로부터 생성된 테이블
-    - 등록 테이블 : 학번과 과목을 식별할 수 있는 데이터만 존재한다.(학번,과목번호) relation type으로부터 생성된 테이블  
+    - 학생 테이블 : 학생의 데이터가 존재(학번 : key attribute) 한다. 
+    - 과목 테이블 : 과목 정보가 존재(과목번호 : key attribute) 한다.
+    - 등록 테이블 : 학번과 과목을 식별할 수 있는 데이터만 존재한다.(학번,과목번호) 
 
-    결국 entity type이나 relation type이나 record type(table이 나온것이다.)로 표현된다.
+    결국 entity type과 relation type은 record type(table)로 표현된다.
      
     현실 세계(개념적) : entity type, relation type  
     logical(논리적) : record type  
@@ -111,7 +110,7 @@ attribute
     - 1:n 둘다 되므로 다대다이다.
 
 ![엔티티/ 관게 타입을 레코드로](./image/modeling/db.png)
-key attribute : unique하다. 식별 값임.
+key attribute : unique하다.
 Relationship Type도 attribute를 갖는다.
 등록은 양쪽의 key attribute로 구성되어져 있고, 성적이 추가되어져 있다.  
 개념적 세계에서는 entity type이라하고 논리적 세계에서는 record type이라 한다.
@@ -122,8 +121,8 @@ Relationship Type도 attribute를 갖는다.
 - Primary Key(기본키) PK : 동일한 값이 존재하면 안된다.
     - 학생의 학번을 primary key라고 한다.
 - Foreign Key(외래키) FK : *로 표현하고, 주체의 primary key를 사용해야 한다는 제한이 잇다.
-    - 등록에서의 학번(*붙은)을 외래키라고 한다.
-    - 위에서 등록 테이블은 primary키가 없기 때문에, 학번, 과목번호를 가지고는 특정 한개의 데이터를 받을 수 없다. 그렇기 때문에, 외래키로 사용된 두가지의 키를 모두 사용해야 primary 기능을 할 수 있다.
+    - 등록에서의 학번(* 붙은)을 외래키라고 한다.
+    - 위에서 등록 테이블은 primary키가 없기 때문에, 학번, 과목번호 둘중 하나만 가지고는 특정 한개의 데이터를 받을 수 없다. 그렇기 때문에, 외래키로 사용된 두가지의 키를 모두 사용해야 primary 기능을 할 수 있다.
 
 
  - Mapping(사상의 참여?)
@@ -135,7 +134,7 @@ Relationship Type도 attribute를 갖는다.
         - 위의 그림과 같이 2명의 교수가 학생을 지도 하지 않고 있는것을 부분참여라고 한다.
         - E-R 벤다이어그램에 교수 지도 학생의 선에 1은 부분 참여를 나타낸다.
     - 위의 그림에서 첫번째 교수가 빠진다면? 그 지도교수의 학생들은 DB로 부터 삭제되야한다. 또는 다른 교수로 이어주던가 해야함.
-    - 밑의 벤다이어그램을 보면서 배운걸 생각해보자.
+    - 밑의 벤다이어그램을 보면서 배운걸 적용하여 문제점을 찾아보자.
 ![mapping](./image/modeling/mapping2.png)
    
     
@@ -159,7 +158,7 @@ Relationship Type도 attribute를 갖는다.
      - 3.다원 관계표현(n-ary relationship)
      ![triple](./image/modeling/n-ary.png)
         - 위의 그림은 3진 관계이다.
-        - 근무의 데이터는 3팀의 홍길동이 국민대에서 근무한다.
+        - 위의 벤다이어 그램은 "3팀의 홍길동이 국민대에서 근무한다"란 데이터를 얻을 수 있다.
     - 3.다중 관계(multiple relationship)
     ![다중](./image/modeling/multiple2.png)
         - 여러개의 관계를 갖는다.
@@ -171,17 +170,18 @@ Relationship Type도 attribute를 갖는다.
         - 상환 : 값는것. 
         - 상환번호 : partial key(점선) 전체적인 부분적으로만 key의 역할을 할 수 있다는 의미.
             - 위에선 대부 번호별로 상환번호가 유니크하다.
-            - 대부번호가 다른 조건에서는 유니크하지 않다.
+            - 대부번호가 상환 테이블에선 유니크하지 않다.(FK 이기 때문)
         - 위에서 상환(주개체)은 대부(종속개체)에 종속적이다. 다이어그램에선 대부상환과, 상환을 두줄로 한다.
         - 대부를 Strong entity type, 상환을 Weak entity type, 대부상환을 Identifying relationship, 대부번호를 Identifying attribbute, 상환 번호를 partial key
         - 주 개체를 삭제하면, 종속 개체도 삭제된다.
         - 삭제 되지 않으면, 무결성이 깨진다. 테이블 간에 데이터가 달라지는 현상이 생기는 것이다.
         - 존재 종속이 아닌 경우와 비교하면서 공부하자.
        ![loan2](./image/modeling/loan2.png)
-        - 밑은 무슨 상황일까 ? 
     - 5.순환적 관계(recursive relationship)
+      ![recursive](./image/modeling/recursive2.png)
         - 한 relationship에 개의 entity가 두번 참여 하는것이다.
         - role name
-        - 직원 -n 관리 -1 직원
-        -    하급자   상급자
-        - 더 간단하게 만들면
+        - 직원 n 관리 1 직원
+        - 하급자   상급자
+        - 더 간단하게 만들면 한개의 테이블이면 충분하다.
+              ![recursive](./image/modeling/recursive.png)

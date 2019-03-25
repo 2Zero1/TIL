@@ -68,7 +68,7 @@ information의 특징은 방대한 양의 data로부터 뽑아낸 것으로, 목
 >   - 한 조직의 여러 응용 프로그램이 공동으로 소유, 유지, 이용하는 데이터
 
 
-다음은 DBB의 특성이다.
+다음은 DB의 특성이다.
 >1. real-time accessibilities(실시간 접근성)
 >   - 질의에 대한 실시간 처리 및 응답이 가능하다.
 >2. continuous evolution(계속적인 변화)
