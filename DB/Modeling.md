@@ -185,3 +185,104 @@ Relationship Type도 attribute를 갖는다.
         - 하급자   상급자
         - 더 간단하게 만들면 한개의 테이블이면 충분하다.
               ![recursive](./image/modeling/recursive.png)
+
+    - 마지막으로 E-R 다이어그램의 notaion 이다.
+## 6.논리적 설계 : 관계 데이터 모델(Relational Data Model)
+테이블의 세계라고 생각하면 된다. 릴레이션 == 테이블
+E-R 다이어그램을 테이블로 변경
+E-R다이어 그램을(엔터티 릴레이션 데이터) <-> 관계형(로지컬) 데이터모델 <-> 저장데이터베이스
+
+- 1.logical data model의 종류
+    - Relational Data Model(이게 대세)
+    - Hierarchical Data Model(망함)
+    - Network Data Model(망함)
+
+- 2.데이터베이스
+    - (릴레이션 데이터 모델의 관점에서 )릴레이션의 집합.
+    - 관계 스킴(Relation Scheme)
+        - 개체와 관계성의 테이블 정의
+        - ![relation scheme1](./image/modeling/relationscheme1.png)
+        - ![relation scheme2](./image/modeling/relationscheme2.png)
+
+- 3.E-R Diagram에서 관계 스킴으로의 변환
+    - E-R 다이어그램을 테이블로 변환하는 과정이다. 규칙이 정해져 있고, 자동화가 되어져 있다.(ERWin 툴이 존)
+    - 원칙
+        - 검색 효율성을 고려
+        - 릴레이션(테이블) 수가 작을 수록 검색 연산이 효율적임
+        - 전체 릴레이션의 수를 줄이는 방향으로 변환.
+    - 변환 방법
+        - Entity Type은 릴레이션으로 변환 : entity relation
+        - 1-1, 1-n relationship type은 외래키로 변환 : FK attribute
+        - n-m 은 릴레이션으로 변환 : relationship relation
+        - 다중값 애트리뷰트는 릴레이션으로 변환 : attribute relation
+        - 유도 attribute에서는 레코드 타입의 attribute에서 제외한다.
+            - SQL로 처리한다.
+    - 변환 예 : Compnany DB 
+        - ![companyDB](./image/modeling/companyDB.png)
+        - 밑의 Diagram을 table로 규칙에 따라 변환한 것이다.
+        - ![companyDB2](./image/modeling/companyDB2.png)
+    
+        - name은 composite한 데이터이다.
+        - locations은 multi value이다.
+        - Numuber_of_employees는 유도 속성으로, 테이블에 넣지 않아도 유도해낼 수 있음.
+    
+  
+    - 변환 규칙
+        
+    - Rule 1 & 2
+        ![img1](./image/modeling/img1.png)
+        ![img2](./image/modeling/img2.png)
+        - 정규 엔티티타입(regular entity type)은 릴레이션으로 생성
+        - 약한 엔티티 타입(weak entity type)은 릴레이션으로 생성
+            - regular entity type의 키를 weak entity type릴레이션에 외래키로 포함
+            - weak entity type 릴레이션의 기본키는 strong entity type의 기본키와 weak entity type의 부분키 조합으로 구성함.
+        - partial key개념을 알고
+        - 1 : n 개념을 연습하자.
+
+    - Rule 3
+        - 1 : 1 관계 타입 R은 별도의 릴레이션 생성하지 않고 외래키 추가함.
+        ![img3](./image/modeling/img3.png)
+        - 한쪽이 전체 참여라면, 전체 참여 쪽으로 보내는게 낫다. null 최소화. 둘다 전체 참여라면 암대나 보내도 됨.
+        ![img4](./image/modeling/img4.png)  
+
+    - Rule4
+        ![img5](./image/modeling/img5.png)  
+        - 1 : n일때 R은 릴레이션 생략 안하고 외래키를 반드시 n 쪽으로 생성.
+        - 그림 한쪽이 전체참여 다른 한쪽은 n:1를 가질때 무조건 many 쪽으로 보낸다.
+        ![img6](./image/modeling/img6.png) 
+    - Rule 5
+        ![img7](./image/modeling/img7.png) 
+        - M : N 의 R은 Relation을 만들어 줘야한다.
+        - N : M 과 partial key는 논리적 레벨에서 존재하지 않는다. 
+        - 위의 그림도 왼쪽이 N : 1, 오른쪽이 M : 1이다.
+
+    - Rule 6
+    ![img8](./image/modeling/img8.png) 
+        - 한개의 R에 3개의 엔터티가 붙었음.
+        - R을 생성하고, 해당 엔터티타입들의 키를 포함시킨다.
+
+    - Rule 7
+    ![img9](./image/modeling/img9.png) 
+        - multi attribute, **conceptual level에서만 존재.** logical level에선 없다.
+        - 다중값 attribute는 별도의 relation으로 생성한다.
+
+
+### Identifying Relationship
+- PK이자 FK인 attribute가 존재함을 의미
+- case 1 : n - m Relationship
+![img10](./image/modeling/img10.png) 
+- case 2 : 존재종속
+![img11](./image/modeling/img11.png) 
+- case : 다중값 
+![img12](./image/modeling/img12.png) 
+
+### 존재 종속의 Weak entity type
+![img13](./image/modeling/img13.png) 
+- 개념 세계에서 그려진것과 달리 logical level은 둘로 나뉜다.
+![img14](./image/modeling/img14.png) 
+- 두번째 그림을 정확하게 이해해야한다. 오른쪽 것은 파셜키밖에 없으니 왼쪽에 있던 key를 가져와 프라이머리키로 사용하는 것이다.
+
+### 연속된 존재 종속의 (partial key)처리
+![img15](./image/modeling/img15.png) 
+![img16](./image/modeling/img16.png) 
+존재 종속이 두개 이상의 경우.

@@ -178,16 +178,110 @@ wavelength란 한 사이클이 transmission medium을 점유하는 길이 이다
 ## 6. Transmission Impairment
 신호들은 link를 통해 이동하면서 손상되고, link의 불완전성이 impairment를 만든다. 원인으로 3가지가 존재한다.
 - attenuation  
-에너지의 손실을 의미한다. 신호의 전기에너지는 저항으로 인해 열이 발생한다. 그렇기 때문에 신호는 약해지고, 중간에서 amplifiers를 사용하여 신호를 증폭시킨다.
-![attenuation](./image/physical/attenuation.png)
-- distortion
-- noise
+    - 에너지의 손실을 의미한다. 신호의 전기에너지는 저항으로 인해 열이 발생한다. 그렇기 때문에 신호는 약해지고, 중간에서 amplifiers를 사용하여 신호를 증폭시킨다.
+    - ![attenuation](./image/physical/attenuation.png)
+    - 하지만 증폭과 동시에 noise 또한 증폭을 시키기 때문에, repeator를 사용하여 noise를 제거하는 방법을 사용한다.
+    - attenuation은 Decibel을 사용하여 표현한다. 이 표현은 상대적인 표현이기 때문에, 시작과 끝을 의미하는 P1, P2를 이용하여 구한다.
+    - ![attenuation](./image/physical/attenuation1.png)
+    - (-) 는 lose(attenuated) : negative
+    - (+) 는 gain(amplified) : positive
+    - 예제 1
+        - 신호를 transmission medium을 통해 보내지만 반 감소한다고 가정하자. 이는 P2 = 0.5*P1을 의미 하므로, 값을 구해보면 아래와 같다.
+    - ![ex](./image/physical/ex1.png)
 
+    -  ![ex2](./image/physical/ex2.png)
+    - 위의 그림은 Transmission medium을 통해 전달되면서 발생하는 감쇄현상을 emplifier를 통해 증폭시켜 처음에 보내려면 1 dB를 만들어주는 현상이다.
+    - 예제 2
+        - 가끔 dB는 signal power를 측정하기 위해 milliwatts를 사용한다. 이 상황에서 dBm = 10 log(10)Pm(Pm은 milliwatts)이라면, dBm = -30일때의 signal pwoer를 구하면 아래와 같다.
+        - ![ex3](./image/physical/ex3.png)
+    - 예제 3
+        - 케이블 안에서 손실을 deibels per kilometer(dB/km)로 정의된다. 시작할때 -0.3 dB/km의 손실을 갖는 케이블에 2mW의 파워를 갖는다면, 5km일때 signal power를 구하라.
+        - 케이블에서 손실을 구하면 -0.3 * 5 = -1.5 dB이다.
+        - ![ex4](./image/physical/ex4.png)
+- distortion(왜곡)
+    - 신호의 모양이 변하는 현상이다.
+    - 각 신호들은 미디어를 이용하여 목적지 까지 가는데 각자 다른 딜레이가 있는데, 그 딜레이로 인해 phase가 변하게 된다.
+    - ![sender](./image/physical/sender.png)
+    - ![receiver](./image/physical/receiver.png)
+
+- noise(가장 많이 나타나므로 핵심적인 문제이다.)
+    - thermal noise : 저항으로 인해 생기는 변형
+    - induced noise : 모터에서 모터의 특징으로 인해 생기는 변형
+    - crosstalk : 합선으로 인한 변형
+    - impulse noise : 스파크로 인해 변형
+    - ![noise](./image/physical/noise.png)
+        - 위의 그림은 noise로 인해 신호가 변형되는 모습을 보여준다.
+    
+- Signal-to-Noise Ratio(**SNR**) = average signal power / average noise power
+    - 밑의 그림은  noise를 받았을때 amplitude에 따라 변형되는 모습이 어떤지 보여준다.
+    - ![noise2](./image/physical/noise2.png)
+        - 위의 그림을 보면 amplitude가 클수록, noise가 있을떄 데이터를 무사히 보낼 수 있음을 나타낸다. 
+        - 이를 위의 식을 사용해서 생각해보면, 동일한 noise에 signal power(amplitude)가 커지면, SNR을 커지고, 이는 Robust하게 전송할 수 있다는 것을 의미한다.
+
+    - High SNR : less corrupted signal
+    - Low SNR : more corrupted signal by noise
+    - SNR dB는 데시벨로 표현되고 아래와 같이 사용한다.
+    - ![SNR](./image/physical/SNR.png)
+    
+    - 예제 1
+        - 신호의 파워는 10mW이고, noise 의 파워는 1마이크로W이다. SNR의 값과 SNR dB의 값을 구하라.
+        - ![SNR](./image/physical/SNREX1.png)
         
-    
+## 7. Data Rate Limits
+- data communication에서 전송 속도는 중요하다.
+- 전송 속도에 영향을 끼치는 3가지
+    - bandwidth
+    - level of the signals
+    - quality of the channel(the level of noise) : transmission layer에서 데이터가 손상되면 계속해서 재 요청하므로 속도에 영향을 준다.
+- data rate를 계산하기 위해 두가지의 방법이 존재한다.
+    - Nyquist for noiseless channel : 노이즈가 아예 없을때를 가정한다.
+        - 이는 이론적인 최대 bitr ate를 정의한다.
+        - ![nyquist](./image/physical/nyquist.png)
+        - BitRate를 향상시키기 위해 bandwidth와 Level을 상승 시켜야 하지만, Bandwidth는 사실상 고정이고, level을 변화시켜야한다.
+        - 하지만 현실적으로 불가능하고, level이 높을 경우, 손상될 경우 유추가 불가능하다.
+        - 예제 1
+            - 3000 Hz의 BandWidth를 가진 noiseless channel이 2level로 신호를 전송한다면, 최대 bit rate를 구하라
+            - ![bitrate1](./image/physical/bitrate1.png)  
+        - 예제 2
+            - 우리는 20kHz babndwidth의 noiseless channel로 265 kbps를 보낸다면, 몇 signal level 필요한가?
+            - ![bitrate2](./image/physical/bitrate2.png)
+    - Shannon for a noisy channel : 노이즈를 포함한다.
+        - capacity는 소음이 있다는 것을 고려 했을때 최대의 bit rate를 의미한다.(bps로 표현)
+        - ![shannon](./image/physical/shannon.png)
+        - bandwidth와 SNR에 따라 비례하지만, bandwidth는 사실상 고정이다.
+        - level은 capacity에 영향을 끼치지 않는다.
+        - 예제 1
+            - 노이즈가 굉장히 큰 체널에 SNR이 거의 0이라고 가정하자. 그 이유는 noise가 너무 강해서 라고 하자. 그렇게 되면 Capacity는 아래와 같이 계산된다.
+            - ![shannon2](./image/physical/shannon2.png)
+        - 예제 2
+             - ![shannon3](./image/physical/shannon3.png)
+        - 예제 3
+             - ![shannon4](./image/physical/shannon4.png)
 
 
-  
+- 그래서 실제로 limit과 signal level을 구하기 위해 두가지 방법을 모두 사용한다.
+    - shannon capacity는 upper limit을 제공하고
+    - Nyquist formual는 signal level을 제공한다.
+    - 예제 1
+        - ![Q1](./image/physical/Q1.png)
 
-    
+## Performance
+- networking에서 QoS(Quality of Service)는 중요한 이슈이다.
+- Bandwidth에 영향을 받는다.
+- bandwidth in hertz
+- bandwidth in bits per second  
+
+## Latency(Delay) 지연
+- 한 전체 메시지가 목적지 까지 가는데 걸리는 시간. 시작은 1비트를 보낼때 부터 측정한다.
+- Propagation time : 한 비트가 출발지에서 목적지 까지 가는데 걸리는 시간.
+    - Propagation time = distance / propagation speed
+
+- Transmission time
+    - 전체 메시지가 출발지에서 목적지 까지 가는데 걸리는 시간.
+    - transmission time = (message size) / Bandwidth of channel
+    - ![latency](./image/physical/latency.png)
+
+## Jitter
+- delay에 관련된 문제이다.
+- 만약 데이터의 패킷이 서로 다른 latency가지게 되면, 그 데이터를 사용하는 receiver는 time-sensitive 하다.
 
